@@ -87,7 +87,6 @@ int insertRider(const RiderObject &rider) {
     indexer.exists = 1;
     indexer.address = (newId - 1) * RIDER_SIZE;
 
-    // Встановлюємо ID для нового запису
     RiderObject newRider = rider;
     newRider.setId(newId);
 

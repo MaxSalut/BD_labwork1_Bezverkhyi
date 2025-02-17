@@ -56,11 +56,9 @@ int insertRental(const RiderObject &rider, RentalObject &rental, string &error) 
         return 0;
     }
 
-    // Шукаємо останню оренду водія
     RentalObject lastRental;
     int currentAddress = rider.getRentalFirstAddress();
-    int maxId = 0; // Змінена логіка: шукаємо максимальний ID серед оренд водія
-
+    int maxId = 0;
     while (currentAddress != -1) {
         fseek(database, currentAddress, SEEK_SET);
         if (fread(&lastRental, RENTAL_SIZE, 1, database) != 1) {
@@ -74,10 +72,8 @@ int insertRental(const RiderObject &rider, RentalObject &rental, string &error) 
         currentAddress = lastRental.getNextAddress();
     }
 
-    // Встановлюємо ID нової оренди
-    rental.setId(maxId + 1); // Генеруємо ID на основі максимального знайденого
+    rental.setId(maxId + 1);
 
-    // Додаємо оренду в кінець файлу
     fseek(database, 0, SEEK_END);
     int newAddress = ftell(database);
     rental.setSelfAddress(newAddress);
@@ -140,45 +136,7 @@ int updateRental(const RentalObject &rental) {
     return 1;
 }
 
-void noteDeletedRental(int address) {
-    FILE* garbage = fopen(RENTAL_GARBAGE, "a+");
-    if (!garbage) {
-        // Спроба створити файл, якщо він не існує
-        garbage = fopen(RENTAL_GARBAGE, "w");
-        if (!garbage) {
-            cerr << "Помилка: не вдалося створити файл смітника." << endl;
-            return;
-        }
-        fprintf(garbage, "0"); // Початковий запис
-        fclose(garbage);
-        garbage = fopen(RENTAL_GARBAGE, "r+");
-    }
 
-    rewind(garbage);
-    int count = 0;
-    vector<int> addresses;
-
-    // Читання існуючих адрес
-    if (fscanf(garbage, "%d", &count) == 1) {
-        addresses.resize(count);
-        for (int i = 0; i < count; ++i) {
-            fscanf(garbage, "%d", &addresses[i]);
-        }
-    }
-
-    // Додавання нової адреси
-    addresses.push_back(address);
-    count = addresses.size();
-
-    // Перезапис файлу
-    freopen(RENTAL_GARBAGE, "w", garbage);
-    fprintf(garbage, "%d", count);
-    for (int addr : addresses) {
-        fprintf(garbage, " %d", addr);
-    }
-
-    fclose(garbage);
-}
 
 int deleteRental(const RiderObject &rider, const RentalObject &rental, string &error) {
     FILE *dataFile = fopen(RENTAL_DATA, "r+b");
@@ -197,7 +155,6 @@ int deleteRental(const RiderObject &rider, const RentalObject &rental, string &e
         return 0;
     }
 
-    // Позначаємо запис як видалений
     target.setExists(false);
     fseek(dataFile, rental.getSelfAddress(), SEEK_SET);
     fwrite(&target, RENTAL_SIZE, 1, dataFile);
@@ -230,22 +187,10 @@ int deleteRental(const RiderObject &rider, const RentalObject &rental, string &e
     return 1;
 }
 
-
-
-void relinkAddresses(FILE* database, RentalObject& prev, RentalObject& current, RiderObject* rider) {
-    if(current.getSelfAddress() == rider->getRentalFirstAddress()) {
-        rider->setRentalFirstAddress(current.getNextAddress());
-    } else {
-        prev.setNextAddress(current.getNextAddress());
-        fseek(database, prev.getSelfAddress(), SEEK_SET);
-        fwrite(&prev, RENTAL_SIZE, 1, database);
-    }
-}
-
 void PrintRentals(const RiderObject &rider) {
     FILE* database = fopen(RENTAL_DATA, "rb");
     if (!database) {
-        cerr << "Помилка відкриття файлу оренд." << endl;
+        cerr << "Error to open rental file" << endl;
         return;
     }
 
@@ -253,7 +198,7 @@ void PrintRentals(const RiderObject &rider) {
     RentalObject rental;
 
     if (currentAddress == -1) {
-        cout << "Цей водій не має активних оренд." << endl;
+        cout << "This rider doesn't have any active rentals." << endl;
         fclose(database);
         return;
     }
@@ -263,7 +208,7 @@ void PrintRentals(const RiderObject &rider) {
     while (currentAddress != -1) {
         fseek(database, currentAddress, SEEK_SET);
         if (fread(&rental, RENTAL_SIZE, 1, database) != 1) {
-            cerr << "Помилка читання оренди." << endl;
+            cerr << "Error to read rentals ." << endl;
             break;
         }
 
@@ -282,7 +227,7 @@ void PrintRentals(const RiderObject &rider) {
     }
 
     if (!hasActiveRentals) {
-        cout << "Цей водій не має активних оренд." << endl;
+        cout << "This rider doesn't have any active rentals." << endl;
     }
 
     cout << "---------------------" << endl;
