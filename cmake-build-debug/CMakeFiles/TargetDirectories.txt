@@ -1,0 +1,3 @@
+C:/Users/mbezv/CLionProjects/BD_labwork1_Bezverkhyi/cmake-build-debug/CMakeFiles/BD_labwork1_Bezverkhyi.dir
+C:/Users/mbezv/CLionProjects/BD_labwork1_Bezverkhyi/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/mbezv/CLionProjects/BD_labwork1_Bezverkhyi/cmake-build-debug/CMakeFiles/rebuild_cache.dir

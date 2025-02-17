@@ -1,0 +1,18 @@
+# ninja log v6
+3274	4568	7614526571875400	CMakeFiles/BD_labwork1_Bezverkhyi.dir/Check.cpp.obj	2e5a2fbc64bc74e8
+126	3228	7614526540389004	CMakeFiles/BD_labwork1_Bezverkhyi.dir/Rider.cpp.obj	964b638c6b23ad49
+27	2590	7614526539408247	CMakeFiles/BD_labwork1_Bezverkhyi.dir/main.cpp.obj	ea21104352a2096d
+130	3274	7614526540438881	CMakeFiles/BD_labwork1_Bezverkhyi.dir/Rental.cpp.obj	eb6185e9abe2109f
+13	2266	7614534023882528	CMakeFiles/BD_labwork1_Bezverkhyi.dir/OutputEntities.cpp.obj	5e216f2e39f4104a
+2591	4093	7614526565051297	CMakeFiles/BD_labwork1_Bezverkhyi.dir/Input.cpp.obj	fcd2ec6bbffa3006
+4093	5117	7614526580063481	CMakeFiles/BD_labwork1_Bezverkhyi.dir/Master.cpp.obj	1b73461c789bf31a
+2267	3194	7614534046421178	BD_labwork1_Bezverkhyi.exe	4bdee62a651465cb
+5	1232	7614537975312825	build.ninja	71f0c1ef95983b06
+28	1958	7614537976589426	CMakeFiles/BD_labwork1_Bezverkhyi.dir/main.cpp.obj	ea21104352a2096d
+32	2270	7614537976629309	CMakeFiles/BD_labwork1_Bezverkhyi.dir/RiderObject.cpp.obj	7159752581a9fb34
+36	2363	7614537976679171	CMakeFiles/BD_labwork1_Bezverkhyi.dir/RentalObject.cpp.obj	a82a748a6c847a1c
+1959	3431	7614537995907721	CMakeFiles/BD_labwork1_Bezverkhyi.dir/InputFunc.cpp.obj	eb1869f38e301b99
+2271	3606	7614537999019394	CMakeFiles/BD_labwork1_Bezverkhyi.dir/OutputFunc.cpp.obj	e4e00ab1f5ffe4b6
+2364	3812	7614537999946910	CMakeFiles/BD_labwork1_Bezverkhyi.dir/Validator.cpp.obj	aa0941b52a2f9a3a
+3431	4502	7614538010628332	CMakeFiles/BD_labwork1_Bezverkhyi.dir/DataBaseCore.cpp.obj	7f44c79a16ab3fc4
+4503	4800	7614538021339686	BD_labwork1_Bezverkhyi.exe	b0eb6023e17f385c
